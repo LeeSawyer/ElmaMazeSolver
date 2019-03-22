@@ -1,0 +1,159 @@
+------------------------------------------------------------------project-------------------------------------------------
+sudo docker build -t cppenv-project .
+sudo docker run -v /home/lee/Desktop/school/ECE590/ECE590Project/fltk/:/source -e DISPLAY=unix$DISPLAY -it cppenv-project bash			starts docker for fltk
+
+
+cd Desktop/school/ECE590/ECE590Project/fltk/
+g++ helloworld.cpp -Ifltk-1.3.5 -Lfltk-1.3.5/lib -lfltk -lX11 -lXfixes -lXext -ldl -lXrender -o hello_world
+g++ projectLeeSawyer.cpp -Ifltk-1.3.5 -Lfltk-1.3.5/lib -lfltk -lX11 -lXfixes -lXext -ldl -lXrender -lXcursor -lfontconfig -lXft -lXinerama -o projectLeeSawyer
+
+
+
+
+-------------------------------------------------------------------docker---------------------------------------------------------------
+
+cd /home/lee/Desktop/school/ECE590/ECEP520/cppenv   
+sudo docker build -t cppenv .
+sudo docker build -t cppenv-json .
+sudo docker run -v /home/lee/Desktop/school/ECE590/ECE590/hw_6:/source -it cppenv bash					starts docker
+ sudo docker run -v /home/lee/Desktop/school/ECE590/ECE590/hw_9:/source -it cppenv_server bash
+sudo docker run -v /home/lee/Desktop/school/ECE590/ECE590Project/fltk/:/source -it cppenv-project bash			starts docker for fltk
+sudo docker run -v ~/Desktop/school/ECE590/ECE590/hw_7:/source -it cppenv-json bash					starts docker with json
+sudo docker run -v ~/Desktop/school/ECE590/ECE590/hw_8:/source -it cppenv-http bash					starts docker with http
+sudo docker run -p 8080:8080/tcp -v ~/Desktop/school/ECE590/ECE590/hw_8:/source -it cppenv-http bash			starts docker with http with port
+
+Ctrl+p + Ctrl+q										exit docker
+
+make spotless; make; ./bin/test								make and test
+
+sudo docker rm $(sudo docker ps -a -q)								removes all old docker images
+sudo docker container stop $(sudo docker container ls -aq)
+sudo docker system prune
+-------------------------------------------------google test----------------------
+
+g++ helloworld.cpp -Ifltk-1.3.5 -Lfltk-1.3.5/lib -lfltk -lX11 -lXfixes -lXext -ldl -o hello_world
+
+cd hello_c										compile and run .c files
+gcc -c hello.c
+gcc -c main.c
+gcc -o hello *.o
+./hello
+
+cd hello_cpp										compile and run .cpp files
+g++ -c hello.cc
+g++ -c main.cc
+g++ -o hello *.o
+./hello
+
+doxygen -g										run document generator, view in html/index.html in brower
+doxygen Doxyfile
+
+cd ~/Desktop/school/ECE590/ECE590/hw_
+sudo rm -rf bin build *.o 									cleanup
+
+
+-----------------------------------------GITHUB stuff---------------------------------------------------
+git clone https://github.com/klavinslab/elma.git
+
+cd ~/Desktop/school/ECE590/ECEP520						updating from Klavis GITHUB
+git pull origin master									
+
+
+
+cd /home/lee/Desktop/school/ECE590/ECE590/						adding to git
+git add .
+git commit -m "Changed some files"
+git push origin master
+UserName: LeeSawyer
+PW:	RxxxRxxx42
+
+
+
+
+
+///////////////////////////////////////////////Visual Code short cuts
+
+
+
+
+    Fold folds the innermost uncollapsed region at the cursor:
+        Ctrl + Shift + [ on Windows
+        ⌥ + ⌘ + [ on macOS
+
+    Unfold unfolds the collapsed region at the cursor:
+        Ctrl + Shift + ] on Windows
+        ⌥ + ⌘ + ] on macOS
+
+    Fold All folds all region in the editor:
+        Ctrl + K, Ctrl + 0 (zero) on Windows
+        ⌘ + K, ⌘ + 0 (zero) on macOS
+
+    Unfold All unfolds all regions in the editor:
+        Ctrl + K, Ctrl + J on Windows
+        ⌘ + K, ⌘ + J on macOS
+
+
+	toggling block comments
+	Ctrl + Shift + / 
+
+	toggling line
+	 Ctrl + / 
+
+
+//////////////////////////////////////////////
+
+fltk-1.3.5/lib/libfltk.a(Fl_x.o): In function `Fl_X::xrender_supported()':
+Fl_x.cxx:(.text._ZN4Fl_X17xrender_supportedEv+0x32): undefined reference to `XRenderQueryExtension'
+fltk-1.3.5/lib/libfltk.a(Fl_x.o): In function `Fl_X::set_cursor(Fl_RGB_Image const*, int, int)':
+Fl_x.cxx:(.text._ZN4Fl_X10set_cursorEPK12Fl_RGB_Imageii+0x3b): undefined reference to `XcursorImageCreate'
+Fl_x.cxx:(.text._ZN4Fl_X10set_cursorEPK12Fl_RGB_Imageii+0x13d): undefined reference to `XcursorImageLoadCursor'
+Fl_x.cxx:(.text._ZN4Fl_X10set_cursorEPK12Fl_RGB_Imageii+0x16a): undefined reference to `XcursorImageDestroy'
+fltk-1.3.5/lib/libfltk.a(fl_font.o): In function `utf8extents(Fl_Font_Descriptor*, char const*, int, _XGlyphInfo*) [clone .isra.0]':
+fl_font.cxx:(.text._ZL11utf8extentsP18Fl_Font_DescriptorPKciP11_XGlyphInfo.isra.0+0x45): undefined reference to `XftTextExtents32'
+fltk-1.3.5/lib/libfltk.a(fl_font.o): In function `Fl_Font_Descriptor::Fl_Font_Descriptor(char const*, int, int)':
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x90): undefined reference to `FcPatternCreate'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x130): undefined reference to `FcPatternAddString'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x18e): undefined reference to `FcPatternAddString'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x19e): undefined reference to `FcPatternAddInteger'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x1ae): undefined reference to `FcPatternAddInteger'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x1ca): undefined reference to `FcPatternAddDouble'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x1dc): undefined reference to `FcPatternAddString'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x23f): undefined reference to `FcMatrixRotate'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x251): undefined reference to `FcPatternAddMatrix'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x26e): undefined reference to `XftFontMatch'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x285): undefined reference to `XftFontOpenPattern'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x2c6): undefined reference to `XftFontOpen'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x2d1): undefined reference to `FcPatternDestroy'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x2f8): undefined reference to `FcPatternDestroy'
+fl_font.cxx:(.text._ZN18Fl_Font_DescriptorC2EPKcii+0x332): undefined reference to `XftFontOpenXlfd'
+fltk-1.3.5/lib/libfltk.a(fl_font.o): In function `Fl_Xlib_Graphics_Driver::width(unsigned int)':
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver5widthEj+0x47): undefined reference to `XftTextExtents32'
+fltk-1.3.5/lib/libfltk.a(fl_font.o): In function `fl_destroy_xft_draw(unsigned long)':
+fl_font.cxx:(.text._Z19fl_destroy_xft_drawm+0x1f): undefined reference to `XftDrawChange'
+fltk-1.3.5/lib/libfltk.a(fl_font.o): In function `Fl_Xlib_Graphics_Driver::draw(char const*, int, int, int)':
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver4drawEPKciii+0x79): undefined reference to `XftDrawCreate'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver4drawEPKciii+0x8e): undefined reference to `XftDrawChange'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver4drawEPKciii+0xc1): undefined reference to `XftDrawSetClip'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver4drawEPKciii+0x150): undefined reference to `XftDrawString32'
+fltk-1.3.5/lib/libfltk.a(fl_font.o): In function `Fl_Xlib_Graphics_Driver::rtl_draw(char const*, int, int, int)':
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0x56): undefined reference to `FcUtf8Len'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0xc0): undefined reference to `FcUtf8ToUcs4'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0x108): undefined reference to `XftTextExtents32'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0x14d): undefined reference to `XftDrawCreate'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0x162): undefined reference to `XftDrawChange'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0x19e): undefined reference to `XftDrawSetClip'
+fl_font.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver8rtl_drawEPKciii+0x229): undefined reference to `XftDrawString32'
+fltk-1.3.5/lib/libfltk.a(screen_xywh.o): In function `screen_init()':
+screen_xywh.cxx:(.text._ZL11screen_initv+0xf8): undefined reference to `XineramaIsActive'
+screen_xywh.cxx:(.text._ZL11screen_initv+0x11d): undefined reference to `XineramaQueryScreens'
+fltk-1.3.5/lib/libfltk.a(Fl_Double_Window.o): In function `Fl_Xlib_Graphics_Driver::copy_offscreen_with_alpha(int, int, int, int, unsigned long, int, int)':
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0x5b): undefined reference to `XRenderFindStandardFormat'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0x94): undefined reference to `XRenderFindStandardFormat'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0xc0): undefined reference to `XRenderCreatePicture'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0xe2): undefined reference to `XRenderCreatePicture'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0x132): undefined reference to `XRenderSetPictureClipRegion'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0x168): undefined reference to `XRenderComposite'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0x17b): undefined reference to `XRenderFreePicture'
+Fl_Double_Window.cxx:(.text._ZN23Fl_Xlib_Graphics_Driver25copy_offscreen_with_alphaEiiiimii+0x18a): undefined reference to `XRenderFreePicture'
+collect2: error: ld returned 1 exit status
+
