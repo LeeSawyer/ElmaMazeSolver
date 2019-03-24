@@ -3,6 +3,15 @@
 #include <FL/Fl_Box.H>
 #include <iostream>
 Fl_Box *maze[13][13];
+// Fl_Box *stateBox = new Fl_Box(700,100,250,50,""); 
+// Fl_Box *processBox = new Fl_Box(700,300,250,50,"");  // Fl_Box *processBox = new Fl_Box(700,300,250,50,"");
+//   // processBox->box(FL_DOWN_BOX);
+//   // processBox->labelfont(FL_BOLD);
+//   // processBox->labelsize(12);
+// Fl_Box *eventBox = new Fl_Box(700,500,250,50,"");  // Fl_Box *eventBox = new Fl_Box(700,500,250,50,"");
+//   // eventBox->box(FL_DOWN_BOX);
+//   // eventBox->labelfont(FL_BOLD);
+//   // eventBox->labelsize(12);
 
 void verticalWall(int i, int j){
   maze[i][j] = new Fl_Box(((((j-1)/2)*100) + 110),((((i-1)/2)*100) + 20),10,90,"");
@@ -27,6 +36,7 @@ void noHorizontalWalls(int i, int j){
 }
 
 void makeMaze() {
+// std::cout << "what:" << std::endl;
   for (int i = 0; i < 13; i++){
     for (int j = 0; j < 13; j++){
         if(((i%2)==1) && ((j%2) == 0))//placing No vertical walls
@@ -94,6 +104,8 @@ void makeMaze() {
         if(((i%2)==1) && ((j%2)==1)){//placing each block
           maze[i][j] = new Fl_Box(((((j-1)/2)*100) + 20),((((i-1)/2)*100) + 20),90,90,"");
           maze[i][j]->box(FL_FLAT_BOX);
+          maze[1][1]->labelfont(FL_BOLD);
+          maze[1][1]->labelsize(40);
           maze[i][j]->color(FL_WHITE);
         }
     }
@@ -101,11 +113,15 @@ void makeMaze() {
   }
   maze[11][11]->label("END");
 
+  maze[1][1]->label("M");
+  maze[1][1]->labelfont(FL_BOLD);
+  maze[1][1]->labelsize(40);
+
   Fl_Box *stateBoxLabel = new Fl_Box(800,50,30,50,"State");
   stateBoxLabel->box(FL_NO_BOX);
   stateBoxLabel->labelfont(FL_BOLD);
   stateBoxLabel->labelsize(12);
-  Fl_Box *stateBox = new Fl_Box(700,100,250,50,"");
+  Fl_Box *stateBox = new Fl_Box(700,100,250,50,""); 
   stateBox->box(FL_DOWN_BOX);
   stateBox->labelfont(FL_BOLD);
   stateBox->labelsize(12);
@@ -114,20 +130,23 @@ void makeMaze() {
   processBoxLabel->box(FL_NO_BOX);
   processBoxLabel->labelfont(FL_BOLD);
   processBoxLabel->labelsize(12);
-  Fl_Box *processBox = new Fl_Box(700,300,250,50,"");
+  Fl_Box *processBox = new Fl_Box(700,300,250,50,"");  // Fl_Box *processBox = new Fl_Box(700,300,250,50,"");
   processBox->box(FL_DOWN_BOX);
   processBox->labelfont(FL_BOLD);
   processBox->labelsize(12);
+
 
   Fl_Box *eventBoxLabel = new Fl_Box(800,450,30,50,"Event");
   eventBoxLabel->box(FL_NO_BOX);
   eventBoxLabel->labelfont(FL_BOLD);
   eventBoxLabel->labelsize(12);
-  Fl_Box *eventBox = new Fl_Box(700,500,250,50,"");
+  Fl_Box *eventBox = new Fl_Box(700,500,250,50,"");  // Fl_Box *eventBox = new Fl_Box(700,500,250,50,"");
   eventBox->box(FL_DOWN_BOX);
   eventBox->labelfont(FL_BOLD);
   eventBox->labelsize(12);
 
+
+
 }
 
 
@@ -137,22 +156,3 @@ void makeMaze() {
 
 
 
-
-
-
-
-
-
-
-int main(int argc, char ** argv) {
-  
-  
-  Fl_Window *window = new Fl_Window(1000,630);
-  
-  makeMaze();
-
-
-  window->end();
-  window->show(argc, argv);
-  return Fl::run();
-}
