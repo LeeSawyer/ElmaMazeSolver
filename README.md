@@ -69,6 +69,7 @@ Compile and exicute with:
     ./elmaLiteMazeSolver
 
 
+![alt text](https://github.com/LeeSawyer/ElmaMazeSolver/fltk/Screenshot.png)
 
 
 License
