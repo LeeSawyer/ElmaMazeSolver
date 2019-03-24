@@ -59,6 +59,10 @@ GUIs do not easily run in docker containers and I was unsuccessful in figuring t
 
 I attempted to compile and run it on a Windows PC and was unsuccessful.
 
+The "State", "Prosess", and "Event" labels in the GUI would not update successfully.
+
+Implimentation of the https://github.com/klavinslab/elma software was not successful.
+
 
 Usage
 ===
